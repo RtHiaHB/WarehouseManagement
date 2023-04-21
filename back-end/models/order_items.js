@@ -14,13 +14,28 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   order_items.init({
-    order_item_id: DataTypes.INTEGER,
-    order_id: DataTypes.INTEGER,
-    prod_id: DataTypes.INTEGER,
-    qty: DataTypes.INTEGER
+    order_item_id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
+    order_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    prod_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    qty: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }
   }, {
     sequelize,
-    modelName: 'order_items',
+    modelName: 'Order_items',
+    tableName: 'order_items',
+    timestamps: false
   });
   return order_items;
 };

@@ -14,15 +14,36 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   locations.init({
-    loc_id: DataTypes.INTEGER,
-    aisle: DataTypes.INTEGER,
-    column: DataTypes.INTEGER,
-    level: DataTypes.STRING,
-    prod_id: DataTypes.INTEGER,
-    qty: DataTypes.INTEGER
+    loc_id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
+    aisle: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    column: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    level: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    prod_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    qty: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    }
   }, {
     sequelize,
-    modelName: 'locations',
+    modelName: 'Locations',
+    tableName: 'locations',
+    timestamps: false
   });
   return locations;
 };

@@ -14,12 +14,24 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   order_assignments.init({
-    order_ass_id: DataTypes.INTEGER,
-    user_id: DataTypes.INTEGER,
-    order_id: DataTypes.INTEGER
+    order_ass_id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
+    user_id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true
+    },
+    order_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }
   }, {
     sequelize,
-    modelName: 'order_assignments',
+    modelName: 'Order_assignments',
+    tableName: 'order_assignments',
+    timestamps: false
   });
   return order_assignments;
 };

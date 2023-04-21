@@ -14,16 +14,40 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   orders.init({
-    order_id: DataTypes.INTEGER,
-    customer_name: DataTypes.STRING,
-    street_address: DataTypes.STRING,
-    city: DataTypes.STRING,
-    state: DataTypes.STRING,
-    zip_code: DataTypes.INTEGER,
-    tracking_number: DataTypes.STRING
+    order_id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
+    customer_name: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    street_address: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    city: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    state: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    zip_code: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    tracking_number: {
+      type: DataTypes.STRING, 
+      allowNull: false
+    }
   }, {
     sequelize,
     modelName: 'orders',
+    tableName: 'orders',
+    timestamps: false
   });
   return orders;
 };
