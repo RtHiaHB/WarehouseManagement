@@ -13,6 +13,7 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "object-assign": "^4.1.1",
+    "pg": "^8.10.0",
     "sequelize": "^6.31.0",
     "sequelize-cli": "^6.6.0",
     "vary": "^1.1.2"
