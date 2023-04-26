@@ -24,7 +24,11 @@ app.use('/orders', ordersController)
 const locationsController = require('./controllers/locations_controller')
 app.use('/locations', locationsController)
 const productsController = require('./controllers/products_controller')
-app.use('./products', productsController)
+app.use('/products', productsController)
+const order_itemsController = require('./controllers/order_items_controller')
+app.use('/order_items', order_itemsController)
+const order_assignmentsController = require('./controllers/order_assignments_controller')
+app.use('/order_assignments', order_assignmentsController)
 
 app.listen(process.env.PORT, () => {
     console.log(`Ready to go on port: ${process.env.PORT}`)

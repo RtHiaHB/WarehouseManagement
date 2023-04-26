@@ -1,6 +1,6 @@
 const locations = require('express').Router()
 const db = require('../models')
-const { Locations } = db
+const { Locations, Products } = db
 const { Op } = require('sequelize')
 
 // get all locations, or alternatively, find a location by Aisle, Column, and Level
@@ -13,6 +13,12 @@ locations.get('/', async(req, res) => {
                     aisle: req.query.aisle,
                     column: req.query.column,
                     level: req.query.level
+                }
+            })
+        } else if (req.query.SKU) {
+            foundLocations = await Locations.findAll({
+                where: {
+                    prod_id: await prod_idFromSKU(req.query.SKU)
                 }
             })
         } else {
@@ -82,5 +88,14 @@ locations.delete('/:id', async (req, res) => {
         res.status(500).json(err)
     }
 })
+
+async function prod_idFromSKU(itemSKU) {
+    const prod = await Products.findOne({
+        where: {
+            SKU: itemSKU
+        }
+    })
+    return prod.prod_id
+}
 
 module.exports = locations
