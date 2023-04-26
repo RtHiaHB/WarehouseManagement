@@ -1,5 +1,12 @@
+
 const Picker = () => {
-    return <h1>Picker Page</h1>;
+  return(
+    <>
+       <div className="mb-2 Picker">
+          
+        </div>
+        </>
+    )
   };
   
   export default Picker;

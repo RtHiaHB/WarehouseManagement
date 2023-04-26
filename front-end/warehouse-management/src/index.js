@@ -12,7 +12,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
-          <Route parh="Administrator" element={<Administrator />} />
+          <Route path="Administrator" element={<Administrator />} />
           <Route path="Manager" element={<Manager/>} />
           <Route path="Picker" element={<Picker />} />
         </Route>

@@ -21,11 +21,11 @@ export default function Home (props) {
               </span>
             </div>
             <div className="form-group mt-3">
-              <label>Email address</label>
+              <label>Username</label>
               <input
-                type="email"
+                type="text"
                 className="form-control mt-1"
-                placeholder="Enter email"
+                placeholder="Enter username"
               />
             </div>
             <div className="form-group mt-3">
@@ -64,17 +64,17 @@ export default function Home (props) {
           <div className="form-group mt-3">
             <label>Full Name</label>
             <input
-              type="email"
+              type="text"
               className="form-control mt-1"
               placeholder="e.g Jane Doe"
             />
           </div>
           <div className="form-group mt-3">
-            <label>Email address</label>
+            <label>Username</label>
             <input
-              type="email"
+              type="text"
               className="form-control mt-1"
-              placeholder="Email Address"
+              placeholder="Username"
             />
           </div>
           <div className="form-group mt-3">
