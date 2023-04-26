@@ -56,7 +56,7 @@ module.exports = {
         city: customer.city,
         state: customer.state,
         zip_code: customer.zipCode,
-        tracking_Number: makeid(8) //Generate a random tracking number
+        tracking_number: makeid(8) //Generate a random tracking number
       };
       orderData.push(order);
 
@@ -89,3 +89,17 @@ module.exports = {
     await queryInterface.bulkDelete('order_items', null, {})
   }
 };
+// Helper function to generate a random string
+function makeid(length) {
+  var result           = '';
+  var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  var charactersLength = characters.length;
+  for ( var i = 0; i < length; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+}
+
+function ProdNo() {
+  return Math.floor(Math.random() * 49)
+}
