@@ -38,3 +38,44 @@
     font-weight: 600;
     color: rgb(36, 9, 9);
   }
+
+  .Administrator{
+   background: url("https://images.pexels.com/photos/4483608/pexels-photo-4483608.jpeg?auto=compress&cs=tinysrgb&w=800") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 100%;
+  min-width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  }
+
+  .Manager{
+    background: url("https://img.freepik.com/free-photo/interior-large-distribution-warehouse-with-shelves-stacked-with-palettes-goods-ready-market_342744-1481.jpg?w=1480&t=st=1682470658~exp=1682471258~hmac=d499a52c391943f8c8e8d25613457b8e10e9d503e35e665e9a3b48136f929dec") no-repeat center center fixed; 
+   -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background-size: cover;
+   min-height: 100%;
+   min-width: 100%;
+   position: fixed;
+   top: 0;
+   left: 0;
+ 
+   }
+   .Picker{
+    background: url("https://img.freepik.com/free-photo/close-up-warehouse-view_23-2148923142.jpg?w=1480&t=st=1682471188~exp=1682471788~hmac=0f5adc0e91b9c5995fa405896a1b6588fc7a9be06f2a279f49e86d60ae196841") no-repeat center center fixed; 
+   -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background-size: cover;
+   min-height: 100%;
+   min-width: 100%;
+   position: fixed;
+   top: 0;
+   left: 0;
+ 
+   }
