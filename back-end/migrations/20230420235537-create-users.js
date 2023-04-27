@@ -21,6 +21,9 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false
       },
+      name: {
+        type: Sequelize.STRING
+      }
     });
   },
   async down(queryInterface, Sequelize) {

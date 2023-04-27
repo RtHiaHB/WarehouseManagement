@@ -13,7 +13,7 @@ app.use(cors())
 
 app.get('/', (req, res) => {
     res.status(200).json({
-        message: 'Welcome to the Hardwarehouse API'
+        message: 'Welcome to the warehouse API'
     })
 })
 
@@ -29,6 +29,8 @@ const order_itemsController = require('./controllers/order_items_controller')
 app.use('/order_items', order_itemsController)
 const order_assignmentsController = require('./controllers/order_assignments_controller')
 app.use('/order_assignments', order_assignmentsController)
+const authenticationController = require('./controllers/authentication')
+app.use('/authentication', authenticationController)
 
 app.listen(process.env.PORT, () => {
     console.log(`Ready to go on port: ${process.env.PORT}`)
