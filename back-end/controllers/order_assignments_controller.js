@@ -5,7 +5,7 @@ const { Op } = require('sequelize')
 
 //get all order_assignments, or find order_assignments by user
 
-locations.get('/', async (req, res) => {
+order_assignments.get('/', async (req, res) => {
     let foundOrder_Assignments
     try {
         if(req.query.user_name) {

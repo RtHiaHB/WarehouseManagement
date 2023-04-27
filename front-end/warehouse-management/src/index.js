@@ -5,19 +5,22 @@ import Administrator from "./pages/Administrator";
 import Manager from "./pages/Manager";
 import Picker from "./pages/Picker";
 import Home from "./pages/Home"
+import CurrentUserProvider from "./contexts/CurrentUser";
 import "./App.css"
 export default function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
-          <Route path="Administrator" element={<Administrator />} />
-          <Route path="Manager" element={<Manager/>} />
-          <Route path="Picker" element={<Picker />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <CurrentUserProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+            <Route path="Administrator" element={<Administrator />} />
+            <Route path="Manager" element={<Manager/>} />
+            <Route path="Picker" element={<Picker />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </CurrentUserProvider>    
   );
 }
 

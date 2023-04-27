@@ -3,7 +3,7 @@ const db = require('../models')
 const { Order_Items } = db
 const { Op } = require('sequelize')
 
-locations.get('/', async(req, res) => {
+order_items.get('/', async(req, res) => {
     let foundOrder_Items
     try {
         if(req.query.order_id) {
