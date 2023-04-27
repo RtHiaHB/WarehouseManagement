@@ -1,6 +1,6 @@
 
 import React, { useContext, useState } from "react"
-import { useHistory } from "react-router"
+import { useNavigate } from "react-router"
 import { CurrentUser } from "../contexts/CurrentUser"
 
 export default function Home (props) {
@@ -10,13 +10,15 @@ export default function Home (props) {
     setAuthMode(authMode === "signin" ? "signup" : "signin")
   }
 
-  const history = useHistory()
+  const navigate = useNavigate()
 
   const { setCurrentUser } = useContext(CurrentUser)
   const [credentials, setCredentials] = useState({
     user_name: '',
     password: ''
   })
+
+  const [errorMessage, setErrorMessage] = useState(null)
 
   const [user, setUser] = useState({
     name: '',
@@ -37,7 +39,7 @@ export default function Home (props) {
     if (response.status === 200) {
       setCurrentUser(data.user)
       localStorage.setItem('token', data.token)
-      history.push(`/`)
+      navigate.push(`/`)
     } else {
       setErrorMessage(data.message)
     }
@@ -53,7 +55,7 @@ export default function Home (props) {
       },
       body: JSON.stringify(user)
     })
-    history.push(`/`)
+    navigate.push(`/`)
   }
 
   if (authMode === "signin") {
