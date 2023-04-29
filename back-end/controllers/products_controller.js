@@ -1,6 +1,6 @@
 const products = require('express').Router()
 const db = require('../models')
-const { Products } = db
+const { Products, Locations } = db
 const { Op } = require('sequelize')
 
 products.get('/', async (req, res) => {
@@ -12,6 +12,16 @@ products.get('/', async (req, res) => {
     }
 })
 
+products.get('/inv', async (req, res) => {
+    try {
+        const result = await db.sequelize.query('SELECT locations.prod_id, products.sku, SUM(locations.qty) FROM products LEFT JOIN locations ON products.prod_id = locations.prod_id WHERE locations.prod_id >= 1 GROUP BY locations.prod_id, products.sku ORDER BY locations.prod_id')
+        console.log(result)
+        res.status(200).json(result[0])
+    } catch (err) {
+        console.log(err)
+        res.status(500).json(err)
+    }
+})
 products.get('/:id', async (req, res) => {
     try {
         const foundProd = await Products.findOne({
@@ -19,7 +29,7 @@ products.get('/:id', async (req, res) => {
                 prod_id: req.params.id
             }
         })
-        res.status(200).json(foundItem)
+        res.status(200).json(foundProd)
     } catch (err) {
         res.status(500).json(err)
     }
@@ -66,5 +76,6 @@ products.delete('/:id', async (req, res) => {
         res.status(500).json(err)
     }
 })
+
 
 module.exports = products

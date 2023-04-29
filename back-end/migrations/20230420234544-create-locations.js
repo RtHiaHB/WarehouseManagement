@@ -13,7 +13,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false
       },
-      column: {
+      col_number: {
         type: Sequelize.INTEGER,
         allowNull: false
       },

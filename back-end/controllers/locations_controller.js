@@ -7,18 +7,19 @@ const { Op } = require('sequelize')
 locations.get('/', async(req, res) => {
     let foundLocations
     try {
-        if(req.query.aisle && req.query.column && req.query.level) {
+        if(req.query.aisle && req.query.col && req.query.lvl) {
             foundLocations = await Locations.findOne({
                 where: {
                     aisle: req.query.aisle,
-                    column: req.query.column,
-                    level: req.query.level
+                    col_number: req.query.col,
+                    lvl: req.query.lvl
                 }
             })
-        } else if (req.query.SKU) {
+        } else if (req.query.sku) {
+            const prodID = await prod_idFromSKU(req.query.sku)
             foundLocations = await Locations.findAll({
                 where: {
-                    prod_id: await prod_idFromSKU(req.query.SKU)
+                    prod_id: prodID
                 }
             })
         } else {
@@ -92,7 +93,7 @@ locations.delete('/:id', async (req, res) => {
 async function prod_idFromSKU(itemSKU) {
     const prod = await Products.findOne({
         where: {
-            SKU: itemSKU
+            sku: itemSKU
         }
     })
     return prod.prod_id

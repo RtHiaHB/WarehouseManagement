@@ -9,9 +9,9 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate({ Products }) {
+    static associate(models) {
       // define association here
-      Locations.belongsTo(Products, { foreignKey: 'prod_id'})
+      Locations.belongsTo(models.Products, { foreignKey: 'prod_id'})
     }
   }
   Locations.init({
@@ -24,21 +24,21 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    column: {
+    col_number: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    level: {
-      type: DataTypes.STRING,
+    lvl: {
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     prod_id: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: false
     },
     qty: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: false
     }
   }, {
     sequelize,

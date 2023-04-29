@@ -11,8 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate({ Locations }) {
-        Products.hasMany(Locations, { foreignKey: 'prod_id'})
+    static associate(models) {
+        Products.hasMany(models.Locations, { foreignKey: 'prod_id'})
+        Products.hasMany(models.Order_Items, { foreignKey: 'prod_id' })
     }
   }
   Products.init({
@@ -21,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       autoIncrement: true
     },
-    SKU: {
+    sku: {
       type: DataTypes.STRING,
       allowNull: false
     },
