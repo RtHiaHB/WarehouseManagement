@@ -15,9 +15,9 @@ module.exports = {
     const productData = []
     productData.push({
       prod_id: 0,
-      SKU: 'RES-100-1/4W',
-      description: 'Resistor 1/4W - 100 Ohm',
-      price: 0.19
+      SKU: 'NONE',
+      description: 'none',
+      price: 0.00
     })
     productData.push({
       prod_id: 1, 
