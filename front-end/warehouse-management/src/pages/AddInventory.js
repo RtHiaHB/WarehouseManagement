@@ -1,60 +1,94 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function ProductTable() {
   const [products, setProducts] = useState([]);
-  const [aisle, setAisle] = useState('');
-  const [column, setColumn] = useState('');
-  const [level, setLevel] = useState('');
-  const [sku, setSku] = useState('');
-  const [qty, setQty] = useState('');
-
-
-  const handleAddProduct = () => {
-    const newProduct = { aisle, column, level, sku, qty};
-    setProducts([...products, newProduct]);
-    setAisle('');
-    setColumn('');
-    setLevel('');
-    setSku('');
-    setQty('');
+  const [loc_id, setLoc_id] = useState();
+  const [prod_id, setProd_id] = useState();
+  const [qty, setQty] = useState();
+  const [emptyLocations, setEmptyLocations] = useState([]);
     
-  };
+
+  function padZeroes(num, size) {
+    let numstr=num.toString()
+    while (numstr.length < size) {
+      numstr = "0" + numstr
+    }
+    return numstr;
+  }
+
+  const handleSubmit = async () => {
+    console.log(loc_id)
+    const locationURL = `http://localhost:5000/locations/${loc_id}`
+    const data = {
+      "prod_id": prod_id,
+      "qty": qty
+    }
+    await fetch(locationURL, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    window.location.reload(false)
+  }
+
+  const handleLocationChange = async (e) => {
+    setLoc_id(e.target.value);
+    console.log(loc_id)    
+  }
+
+  function ProductDropdown() {
+    useEffect(() => {
+      fetch('http://localhost:5000/products')
+        .then(response => response.json())
+        .then(data => setProducts(data))
+        .catch(error => console.error(error))
+    }, []);
+
+    return (
+      <select onChange={e => setProd_id(e.target.value)}>
+        {products.map(product => (
+          <option key={product.sku} value={product.prod_id}>
+            {product.sku}
+          </option>
+        ))}
+      </select>
+    );
+  }
+  function EmptyLocationDropdown() {
+    useEffect(() => {
+      fetch('http://localhost:5000/locations?sku=NOTHING')
+        .then(response => response.json())
+        .then(data => setEmptyLocations(data))
+        .catch(error => console.error(error));
+
+    }, []);
+    return (
+      <select onChange={e => handleLocationChange(e)}>
+        {emptyLocations.map(location => (
+          <option 
+            key={`${padZeroes(location.aisle, 4)}-${padZeroes(location.col_number, 2)}-${padZeroes(location.lvl, 2)}`} 
+            value={location.loc_id}>
+            {`${padZeroes(location.aisle, 4)}-${padZeroes(location.col_number, 2)}-${padZeroes(location.lvl, 2)}`}
+          </option>
+        ))}
+      </select>
+    );
+  }
 
   return (
     <div>
-      <h1>Product Table</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>Aisle</th>
-            <th>Column</th>
-            <th>Level</th>
-            <th> </th>
-            <th>SKU</th>
-            <th>Qty</th>
-            <th> </th>
-          
-          </tr>
-        </thead>
-        <tbody>
-    
-            <tr key={index}>
-              <td><input type="text" name="aisle" id="aisle"></input></td>
-              <td><input type="text" name="col_number" id="col_number"></input></td>
-              <td><input type="text" name="lvl" id="lvl"></input></td>
-              <td><button onClick={searchLocation}>Search</button></td>
-              <td><input type="text" name="sku" id="sku"/></td>
-              <td><input type="text" name="qty" id="qty"/></td>
-              <td><button onClick={addInventory}>AddInventory</button></td>
-            </tr>
-          
-        </tbody>
-      </table>
-      <div>
-        
-        
-        <button onClick={handleAddProduct}>Add Product</button>
-      </div>
+      <h1>Add Inventory</h1>
+      <h3>Select Location:</h3>
+      {EmptyLocationDropdown()}
+
+      <h3>Select SKU:</h3>
+      {ProductDropdown()}
+      
+      <h3>Qty to add:</h3>
+      <input type='text' key='qty' onChange={e => setQty(e.target.value)} defaultValue={0} />
+      <button onClick={handleSubmit}>Submit</button>
     </div>
   );
 }
