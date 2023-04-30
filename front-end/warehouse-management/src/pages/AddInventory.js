@@ -29,22 +29,25 @@ function ProductTable() {
             <th>Aisle</th>
             <th>Column</th>
             <th>Level</th>
+            <th> </th>
             <th>SKU</th>
             <th>Qty</th>
+            <th> </th>
           
           </tr>
         </thead>
         <tbody>
-          {products.map((products, index) => (
+    
             <tr key={index}>
-              <td>{products.aisle}</td>
-              <td>{products.column}</td>
-              <td>{products.level}</td>
-              <td>{products.sku}</td>
-              <td>{products.qty}</td>
-             
+              <td><input type="text" name="aisle" id="aisle"></input></td>
+              <td><input type="text" name="col_number" id="col_number"></input></td>
+              <td><input type="text" name="lvl" id="lvl"></input></td>
+              <td><button onClick={searchLocation}>Search</button></td>
+              <td><input type="text" name="sku" id="sku"/></td>
+              <td><input type="text" name="qty" id="qty"/></td>
+              <td><button onClick={addInventory}>AddInventory</button></td>
             </tr>
-          ))}
+          
         </tbody>
       </table>
       <div>
