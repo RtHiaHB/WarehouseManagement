@@ -20,7 +20,8 @@ locations.get('/', async(req, res) => {
             foundLocations = await Locations.findAll({
                 where: {
                     prod_id: prodID
-                }
+                },
+                order: [['loc_id', 'ASC']]
             })
         } else {
             foundLocations = await Locations.findAll()
@@ -61,6 +62,8 @@ locations.post('/', async (req, res) => {
 //update a location
 locations.put('/:id', async (req, res) => {
     try {
+        console.log(req.body)
+        console.log(req.params.id)
         const updatedLocation = await Locations.update(req.body, {
             where: {
                 loc_id: req.params.id
