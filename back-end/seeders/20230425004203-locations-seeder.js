@@ -14,21 +14,20 @@ module.exports = {
     */
     const locationData = [];
     let locID = 0
-    for (let i = 1; i <= 40; i++) {
-      for (let j = 1; j <= 50; j++) {
-        for (let k = 1; k <= 6; k++) {
-          let hi = hasInventory()
-          locationData.push({
-            loc_id: locID,
-            aisle: i,
-            column: j,
-            level: k.toString(),
-            prod_id: hi ? ProdNo() : null,
-            qty: hi ? InventoryAmt() : null
-          });
-          locID++;
-        }
-      }
+    for (let i = 1; i <= 12000; i++) {
+      let aisle = Math.floor((i - 1) / 300) + 1;
+      let col_number = Math.floor(((i-1) % 300) / 6) + 1;
+      let lvl = ((i - 1) % 6) + 1;
+      let hi = hasInventory();
+      locationData.push({
+        loc_id: i,
+        aisle: aisle,
+        col_number: col_number,
+        lvl: lvl,
+        prod_id: hi ? ProdNo() : 0,
+        qty: hi ? InventoryAmt() : 0,
+      })
+      
     }
     await queryInterface.bulkInsert('locations', locationData)
   },
@@ -49,7 +48,7 @@ function hasInventory() {
 }
 
 function ProdNo() {
-  return Math.floor(Math.random() * 50)
+  return Math.floor(Math.random() * 49) + 1
 }
 
 function InventoryAmt() {
