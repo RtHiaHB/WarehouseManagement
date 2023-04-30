@@ -18,7 +18,7 @@ export default function Home (props) {
     password: ''
   })
 
-  const [errorMessage, setErrorMessage] = useState(null)
+  //const [errorMessage, setErrorMessage] = useState(null)
 
   const [user, setUser] = useState({
     name: '',
