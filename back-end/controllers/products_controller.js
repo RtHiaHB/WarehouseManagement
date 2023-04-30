@@ -5,7 +5,18 @@ const { Op } = require('sequelize')
 
 products.get('/', async (req, res) => {
     try {
-        const foundProducts = await Products.findAll()
+        let foundProducts
+        if(req.query.sku) {
+            foundProducts = await Products.findOne({
+                    where: {
+                        sku: req.query.sku
+                    }
+                }
+            )
+        }
+        else {
+            foundProducts = await Products.findAll()
+        }
         res.status(200).json(foundProducts)
     } catch (err) {
         res.status(500).json(err)
