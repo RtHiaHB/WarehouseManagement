@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-function ProductTable() {
+function EditTable() {
   const [products, setProducts] = useState([]);
   const [loc_id, setLoc_id] = useState();
   const [prod_id, setProd_id] = useState();
@@ -79,18 +79,18 @@ function ProductTable() {
 
   return (
     <div>
-      <h1>Add Inventory</h1>
+      <h1>Edit Inventory</h1>
       <h3>Select Location:</h3>
       {EmptyLocationDropdown()}
 
       <h3>Select SKU:</h3>
       {ProductDropdown()}
       
-      <h3>Qty to add:</h3>
+      <h3>Qty to Edit:</h3>
       <input type='text' key='qty' onChange={e => setQty(e.target.value)} defaultValue={0} />
       <button onClick={handleSubmit}>Submit</button>
     </div>
   );
 }
 
-export default ProductTable;
+export default EditTable;
