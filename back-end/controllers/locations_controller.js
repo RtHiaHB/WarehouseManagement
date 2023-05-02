@@ -13,7 +13,8 @@ locations.get('/', async(req, res) => {
                     aisle: req.query.aisle,
                     col_number: req.query.col,
                     lvl: req.query.lvl
-                }
+                },
+                order: [['loc_id', 'ASC']]
             })
         } else if (req.query.sku) {
             const prodID = await prod_idFromSKU(req.query.sku)
@@ -24,7 +25,9 @@ locations.get('/', async(req, res) => {
                 order: [['loc_id', 'ASC']]
             })
         } else {
-            foundLocations = await Locations.findAll()
+            foundLocations = await Locations.findAll({
+                order: [['loc_id', 'ASC']]
+            })
         }
         res.status(200).json(foundLocations)
     } catch (err) {
