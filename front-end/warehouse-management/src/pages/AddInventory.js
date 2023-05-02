@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import "../App.css";
 
 function ProductTable() {
   const [products, setProducts] = useState([]);
@@ -78,7 +79,8 @@ function ProductTable() {
   }
 
   return (
-    <div>
+    <div class="AddInventory">
+    
       <h1>Add Inventory</h1>
       <h3>Select Location:</h3>
       {EmptyLocationDropdown()}

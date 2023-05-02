@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import "../App.css";
 function EditTable() {
   const [products, setProducts] = useState([]);
   const [loc_id, setLoc_id] = useState();
@@ -85,7 +85,7 @@ function EditTable() {
   }
 
   return (
-    <div>
+    <div class="EditInventory">
       <h1>Edit Inventory</h1>
       <h3>Select Location:</h3>
       {EmptyLocationDropdown()}

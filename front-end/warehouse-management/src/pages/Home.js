@@ -5,7 +5,7 @@ import { CurrentUser } from "../contexts/CurrentUser"
 
 export default function Home (props) {
   let [authMode, setAuthMode] = useState("signin")
-
+ 
   const changeAuthMode = () => {
     setAuthMode(authMode === "signin" ? "signup" : "signin")
   }
@@ -25,7 +25,7 @@ export default function Home (props) {
     user_name: '',
     password: ''
   })
-
+ 
   async function handleSignInSubmit(e) {
     e.preventDefault()
     const response = await fetch(`http://localhost:5000/authentication`, {
