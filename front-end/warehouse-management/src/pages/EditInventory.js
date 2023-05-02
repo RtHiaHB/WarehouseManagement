@@ -34,8 +34,7 @@ function EditTable() {
   }
 
   const handleLocationChange = async (e) => {
-    setLoc_id(e.target.value);
-    console.log(loc_id)    
+    setLoc_id(e.target.value);  
   }
 
   function ProductDropdown() {
@@ -47,7 +46,10 @@ function EditTable() {
     }, []);
 
     return (
-      <select onChange={e => setProd_id(e.target.value)}>
+      <select id="prod" onChange={e => {
+          setProd_id(e.target.value)
+          document.getElementById("prod").value=prod_id
+        }}>
         {products.map(product => (
           <option key={product.sku} value={product.prod_id}>
             {product.sku}
@@ -58,14 +60,19 @@ function EditTable() {
   }
   function EmptyLocationDropdown() {
     useEffect(() => {
-      fetch('http://localhost:5000/locations?sku=NOTHING')
+      fetch('http://localhost:5000/locations')
         .then(response => response.json())
         .then(data => setEmptyLocations(data))
         .catch(error => console.error(error));
 
     }, []);
+    
     return (
-      <select onChange={e => handleLocationChange(e)}>
+      <select onChange={e => {
+        handleLocationChange(e)
+        document.getElementById("prod").value=emptyLocations[e.target.value].prod_id
+        document.getElementById("qty").value=emptyLocations[e.target.value].qty
+        }}>
         {emptyLocations.map(location => (
           <option 
             key={`${padZeroes(location.aisle, 4)}-${padZeroes(location.col_number, 2)}-${padZeroes(location.lvl, 2)}`} 
@@ -83,11 +90,11 @@ function EditTable() {
       <h3>Select Location:</h3>
       {EmptyLocationDropdown()}
 
-      <h3>Select SKU:</h3>
+      <h3>Selected SKU:</h3>
       {ProductDropdown()}
       
       <h3>Qty to Edit:</h3>
-      <input type='text' key='qty' onChange={e => setQty(e.target.value)} defaultValue={0} />
+      <input type='text' id="qty" key='qty' onChange={e => setQty(e.target.value)} defaultValue={0} />
       <button onClick={handleSubmit}>Submit</button>
     </div>
   );
