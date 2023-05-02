@@ -9,11 +9,7 @@ function ProductTable() {
     
 
   function padZeroes(num, size) {
-    let numstr=num.toString()
-    while (numstr.length < size) {
-      numstr = "0" + numstr
-    }
-    return numstr;
+    return num.toString().padStart(size, '0');
   }
 
   const handleSubmit = async () => {

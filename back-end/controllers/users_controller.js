@@ -6,12 +6,16 @@ const { Op } = require('sequelize')
 
 router.post('/', async (req, res) => {
     let { password, ...rest } = req.body
-    const user = await Users.create({
-        ...rest,
-        role_id: 2,
-        passwordDigest: await bcrypt.hash(password, 10)
-    })
-    res.json(user)
+    try {
+        const user = await Users.create({
+            ...rest,
+            role_id: 2,
+            password_digest: await bcrypt.hash(password, 10)
+        })
+        res.json(user)
+    } catch (err) {
+        console.log(err)
+    }
 })
 
 router.get('/', async (req, res) => {

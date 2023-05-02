@@ -17,7 +17,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false
       },
-      level: {
+      l6vl: {
         type: Sequelize.STRING,
         allowNull: false
       },
