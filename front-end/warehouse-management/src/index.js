@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import CurrentUserProvider from "./contexts/CurrentUser";
 import AddInventory from "./pages/AddInventory"
 import EditInventory from "./pages/EditInventory"
+import InvByProd from './pages/InvByProd'
 import "./App.css";
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
             <Route path="Picker" element={<Picker />} />
             <Route path="AddInventory" element={<AddInventory />} />
             <Route path="EditInventory" element={<EditInventory />} />
+            <Route path="InvByProd" element={<InvByProd />} />
           </Route>
         </Routes>
       </BrowserRouter>
