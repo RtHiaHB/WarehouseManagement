@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import "../App.css";
 
 function ProductTable() {
   const [products, setProducts] = useState([]);
@@ -58,7 +59,7 @@ function ProductTable() {
         .then(response => response.json())
         .then(data => setEmptyLocations(data))
         .catch(error => console.error(error));
-
+     
     }, []);
     return (
       <select onChange={e => handleLocationChange(e)}>
@@ -74,7 +75,8 @@ function ProductTable() {
   }
 
   return (
-    <div>
+    <div class="AddInventory">
+    
       <h1>Add Inventory</h1>
       <h3>Select Location:</h3>
       {EmptyLocationDropdown()}

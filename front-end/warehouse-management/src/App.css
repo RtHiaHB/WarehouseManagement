@@ -4,6 +4,7 @@
   }
   
   .Home-form-container {
+    background-color: rgb(164, 183, 186);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -78,4 +79,33 @@
    top: 0;
    left: 0;
  
+   }
+   .AddInventory{
+   
+     background-color: rgb(20, 161, 186);
+     height: 650px;
+     text-align: center;
+     
+     font-size: 20px;
+     color: rgb(67, 42, 207);
+  
+   }
+   .EditInventory{
+   
+    background-color: rgb(195, 215, 196);
+    height: 650px;
+    text-align: center;
+    
+    font-size: 20px;
+    color: rgb(67, 42, 207);
+ 
+  }
+   
+   .Layout{
+    text-align: center;
+    font-size: 28px;
+    font-style:normal;
+    background-color: rgb(195, 215, 211);
+    height: 60px;
+
    }

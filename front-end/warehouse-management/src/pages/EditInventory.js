@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+
+import "../App.css";
 import LocationSelector from './LocationsSelector';
 import ProductSelector from './ProductSelector';
 
@@ -71,7 +73,7 @@ function EditTable() {
     setSKU(allProducts[e.target.value].sku)
   }
   return (
-    <div>
+    <div class="EditInventory">
       <h1>Edit Inventory</h1>
       <h3>Select Location:</h3>
       <LocationSelector onChange={handleLocationChange} locations={allLocations} />
