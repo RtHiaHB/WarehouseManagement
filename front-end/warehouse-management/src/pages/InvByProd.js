@@ -4,14 +4,23 @@ import ProdInventory from "./ProdInventory";
 const InvByProd = () => {
     const [prodInv, setProdInv] = useState([])
     useEffect(() => {
-        async function fetchData(){
-            fetch('http://localhost:5000/products/inv')
-                .then((response) => response.json())
-                .then((actualData) => setProdInv(actualData))
-                .catch((err) => { console.error(err) })
+        if (prodInv.length === 0) {
+            fetchData()
         }
-        fetchData()
+        console.log(prodInv)
     }, [])
+    
+    function fetchData(){
+        console.log('here')
+        fetch('http://localhost:5000/products/inv')
+            .then((response) => response.json())
+            .then((actualData) => {
+                console.log(actualData)
+                setProdInv(actualData)
+            })
+            .catch((err) => { console.error(err) })
+    }
+
     return (
         <div>
             <h1>Inventory by Product</h1>
@@ -27,7 +36,7 @@ const InvByProd = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {prodInv[0].map((prod) => <ProdInventory product={prod} />)}
+                    {prodInv.map((prod) => <ProdInventory product={prod} />)}
                 </tbody>
             </table>
         </div>
