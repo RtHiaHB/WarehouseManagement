@@ -63,7 +63,7 @@ function ProductTable() {
         .then(response => response.json())
         .then(data => setEmptyLocations(data))
         .catch(error => console.error(error));
-
+     
     }, []);
     return (
       <select onChange={e => handleLocationChange(e)}>
