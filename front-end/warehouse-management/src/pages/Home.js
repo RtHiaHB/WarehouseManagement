@@ -1,6 +1,6 @@
 
 import React, { useContext, useState } from "react"
-import { useNavigate } from "react-router"
+import { useNavigate } from "react-router-dom"
 import { CurrentUser } from "../contexts/CurrentUser"
 
 export default function Home (props) {
@@ -15,7 +15,7 @@ export default function Home (props) {
   const { setCurrentUser } = useContext(CurrentUser)
   const [credentials, setCredentials] = useState({
     user_name: '',
-    password: ''
+    password: '',
   })
 
   const [errorMessage, setErrorMessage] = useState(null)
@@ -39,7 +39,20 @@ export default function Home (props) {
     if (response.status === 200) {
       setCurrentUser(data.user)
       localStorage.setItem('token', data.token)
-      navigate.push(`/`)
+      switch (data.user.role_id) {
+        case 0:
+          navigate('/Manager');
+          break;
+        case 1:
+          navigate('/Administrator');
+          break;
+        case 2:
+          navigate('/Picker');
+          break;
+        default:
+          navigate('/');
+          break;
+      }
     } else {
       setErrorMessage(data.message)
     }
@@ -47,7 +60,7 @@ export default function Home (props) {
 
   async function handleSignUpSubmit(e) {
     e.preventDefault()
-
+    console.log(user)
     await fetch(`http://localhost:5000/users/`, {
       method: 'POST',
       headers: {
@@ -124,7 +137,12 @@ export default function Home (props) {
               required
               className="form-control mt-1"
               placeholder="e.g Jane Doe"
-              onChange={e => setUser({ ...user, name: e.target.value })}
+              onChange={e => {
+                  console.log('here')
+                  setUser({ ...user, name: e.target.value })
+                  console.log(user)
+                }
+              }
             />
           </div>
           <div className="form-group mt-3">

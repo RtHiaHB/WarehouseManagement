@@ -25,8 +25,7 @@ products.get('/', async (req, res) => {
 
 products.get('/inv', async (req, res) => {
     try {
-        const result = await db.sequelize.query('SELECT locations.prod_id, products.sku, SUM(locations.qty) FROM products LEFT JOIN locations ON products.prod_id = locations.prod_id WHERE locations.prod_id >= 1 GROUP BY locations.prod_id, products.sku ORDER BY locations.prod_id')
-        console.log(result)
+        const result = await db.sequelize.query('SELECT locations.prod_id, products.sku, SUM(locations.qty) as TotQty FROM products LEFT JOIN locations ON products.prod_id = locations.prod_id WHERE locations.prod_id >= 1 GROUP BY locations.prod_id, products.sku ORDER BY locations.prod_id')
         res.status(200).json(result[0])
     } catch (err) {
         console.log(err)
