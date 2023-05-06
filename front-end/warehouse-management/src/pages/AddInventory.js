@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import "../App.css";
+import ProductSelector from './ProductSelector';
 
 function ProductTable() {
   const [products, setProducts] = useState([]);
@@ -15,7 +16,7 @@ function ProductTable() {
 
   const handleSubmit = async () => {
     console.log(loc_id)
-    const locationURL = `http://localhost:5000/locations/${loc_id}`
+    const locationURL = `http://${process.env.REACT_APP_DATABASE_URI}:${process.env.REACT_APP_DATABASE_PORT}/locations/${loc_id}`
     const data = {
       "prod_id": prod_id,
       "qty": qty
@@ -37,7 +38,7 @@ function ProductTable() {
 
   function ProductDropdown() {
     useEffect(() => {
-      fetch('http://localhost:5000/products')
+      fetch(`http://${process.env.REACT_APP_DATABASE_URI}:${process.env.REACT_APP_DATABASE_PORT}/products`)
         .then(response => response.json())
         .then(data => setProducts(data))
         .catch(error => console.error(error))
@@ -55,7 +56,7 @@ function ProductTable() {
   }
   function EmptyLocationDropdown() {
     useEffect(() => {
-      fetch('http://localhost:5000/locations?sku=NOTHING')
+      fetch(`http://${process.env.REACT_APP_DATABASE_URI}:${process.env.REACT_APP_DATABASE_PORT}/locations?sku=NOTHING`)
         .then(response => response.json())
         .then(data => setEmptyLocations(data))
         .catch(error => console.error(error));
@@ -82,7 +83,7 @@ function ProductTable() {
       {EmptyLocationDropdown()}
 
       <h3>Select SKU:</h3>
-      {ProductDropdown()}
+      <ProductSelector value={prod_id} />
       
       <h3>Qty to add:</h3>
       <input type='text' key='qty' onChange={e => setQty(e.target.value)} defaultValue={0} />

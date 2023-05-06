@@ -9,7 +9,7 @@ function LocationSelector(props) {
     useEffect(() => {
         async function fetchLocations() {
             try {
-                const rawLocations = await fetch('http://localhost:5000/locations');
+                const rawLocations = await fetch(`http://${process.env.REACT_APP_DATABASE_URI}:${process.env.REACT_APP_DATABASE_PORT}/locations`);
                 const newLocations = await rawLocations.json();
                 setAllLocations(newLocations);
             } catch (err) {

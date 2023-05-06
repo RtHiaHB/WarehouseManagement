@@ -28,7 +28,7 @@ export default function Home (props) {
  
   async function handleSignInSubmit(e) {
     e.preventDefault()
-    const response = await fetch(`http://localhost:5000/authentication`, {
+    const response = await fetch(`http://${process.env.REACT_APP_DATABASE_URI}:${process.env.REACT_APP_DATABASE_PORT}/authentication`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -61,7 +61,7 @@ export default function Home (props) {
   async function handleSignUpSubmit(e) {
     e.preventDefault()
     console.log(user)
-    await fetch(`http://localhost:5000/users/`, {
+    await fetch(`http://${process.env.REACT_APP_DATABASE_URI}:${process.env.REACT_APP_DATABASE_PORT}/users/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
