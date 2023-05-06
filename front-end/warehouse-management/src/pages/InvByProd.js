@@ -12,7 +12,7 @@ const InvByProd = () => {
     
     function fetchData(){
         console.log('here')
-        fetch(`http://${process.env.DATABASE_URI}:${process.env.DATABASE_PORT}/products/inv`)
+        fetch(`http://${process.env.REACT_APP_DATABASE_URI}:${process.env.REACT_APP_DATABASE_PORT}/products/inv`)
             .then((response) => response.json())
             .then((actualData) => {
                 console.log(actualData)

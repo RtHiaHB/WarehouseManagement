@@ -5,7 +5,7 @@ function ProductSelector(props) {
     useEffect(() => {
         async function fetchProducts() {
             try {
-                const rawProducts = await fetch(`http://${process.env.DATABASE_URI}:${process.env.DATABASE_PORT}/products`);
+                const rawProducts = await fetch(`http://${process.env.REACT_APP_DATABASE_URI}:${process.env.REACT_APP_DATABASE_PORT}/products`);
                 const newProducts = await rawProducts.json();
                 setAllProducts(newProducts);
             } catch (err) {
