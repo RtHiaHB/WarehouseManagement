@@ -16,7 +16,7 @@ function EditTable() {
     async function fetchLocations() {
       if (allLocations.length === 0){
         try {
-          const rawLocations = await fetch('http://localhost:5000/locations');
+          const rawLocations = await fetch(`http://${process.env.DATABASE_URI}:${process.env.DATABASE_PORT}/locations`);
           const newLocations = await rawLocations.json();
           setAllLocations(newLocations);
         } catch (err) {
@@ -32,7 +32,7 @@ function EditTable() {
     async function fetchProducts() {
       if (allProducts.length === 0) {
         try {
-          const rawProducts = await fetch('http://localhost:5000/products');
+          const rawProducts = await fetch(`http://${process.env.DATABASE_URI}:${process.env.DATABASE_PORT}/products`);
           const newProducts = await rawProducts.json();
           setAllProducts(newProducts);
         } catch (err) {
@@ -45,7 +45,7 @@ function EditTable() {
   }, [allLocations, allProducts])
 
   const handleSubmit = async () => {
-    const locationURL = `http://localhost:5000/locations/${loc_id}`
+    const locationURL = `http://${process.env.DATABASE_URI}:${process.env.DATABASE_PORT}/locations/${loc_id}`
     const data = {
       "prod_id": prod_id,
       "qty": qty
